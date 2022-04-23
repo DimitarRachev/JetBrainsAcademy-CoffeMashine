@@ -15,11 +15,20 @@ public class Machine {
         this.waterAvailable = 400;
     }
 
-    void fill(int cups, int water, int milk, int coffee) {
-        emptyCups += cups;
-        waterAvailable += water;
-        milkAvailable += milk;
-        coffeeAvailable += coffee;
+     void fillWater(int i) {
+        waterAvailable += i;
+    }
+
+    void fillMilk(int i ) {
+        milkAvailable += i;
+    }
+
+    void fillCoffee(int i ) {
+        coffeeAvailable += i;
+    }
+
+    void fillCups(int i ) {
+        emptyCups += i;
     }
 
     int giveMoney() {
