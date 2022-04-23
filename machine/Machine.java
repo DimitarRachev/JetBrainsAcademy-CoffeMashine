@@ -28,13 +28,25 @@ public class Machine {
         return temp;
     }
 
-    void makeCoffee(int i) {
+    void makeCoffee(int i) throws InsufficientResourcesException {
 
         Coffee coffee = chooseCoffee(i);
-        emptyCups--;
         this.waterAvailable -= coffee.getWATER_NEEDED();
+        if (waterAvailable < 0) {
+            waterAvailable += coffee.getWATER_NEEDED();
+            throw new InsufficientResourcesException("Sorry, not enough water!");
+        }
         milkAvailable -= coffee.getMILK_NEEDED();
+        if (milkAvailable < 0) {
+            milkAvailable += coffee.getMILK_NEEDED();
+            throw new InsufficientResourcesException("Sorry, not enough milk!");
+        }
         coffeeAvailable -= coffee.getCOFFEE_NEEDED();
+        if (coffeeAvailable < 0) {
+            coffeeAvailable += coffee.getCOFFEE_NEEDED();
+            throw new InsufficientResourcesException("Sorry, not enough coffee!");
+        }
+        emptyCups--;
         money += coffee.getCOST();
     }
 
